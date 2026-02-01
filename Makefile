@@ -1,0 +1,37 @@
+# -- Compiler --
+CXX := g++
+CXXFLAGS := -Wall -Wextra -std=c++17
+
+# -- Directories --
+SRC_DIR := src
+BLD_DIR := build
+
+# -- Sources --
+SERVICE_SRCS := $(SRC_DIR)/register.cpp	\
+				$(SRC_DIR)/CTF_Server.cpp
+
+# -- Objects --
+SERVICE_OBJS := $(BLD_DIR)/register.o	\
+				$(BLD_DIR)/CTF_Server.o
+OBJS := $(SERVICE_OBJS)
+BIN := CTF_Server
+
+# -- Targets --
+.PHONY: all build run
+
+all: $(BIN)
+
+$(BIN): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BLD_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BLD_DIR):
+	mkdir -p $(BLD_DIR)
+
+run: all
+	./$(BIN)
+
+clean:
+	rm -rf $(BLD_DIR) $(BIN)

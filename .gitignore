@@ -1,0 +1,5 @@
+#Directories (with their sub-directories)
+build/
+
+#Binaries
+CTF_Server
