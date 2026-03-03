@@ -8,11 +8,14 @@ BLD_DIR := build
 
 # -- Sources --
 SERVICE_SRCS := $(SRC_DIR)/register.cpp	\
-				$(SRC_DIR)/CTF_Server.cpp
-
+				$(SRC_DIR)/CTF_Server.cpp\
+				$(SRC_DIR)/DB_operations.cpp
+				
 # -- Objects --
 SERVICE_OBJS := $(BLD_DIR)/register.o	\
-				$(BLD_DIR)/CTF_Server.o
+				$(BLD_DIR)/CTF_Server.o \
+				$(BLD_DIR)/DB_operations.o \
+
 OBJS := $(SERVICE_OBJS)
 BIN := CTF_Server
 
@@ -22,7 +25,7 @@ BIN := CTF_Server
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^  -l sqlite3
 
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BLD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@

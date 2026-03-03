@@ -3,3 +3,4 @@ build/
 
 #Binaries
 CTF_Server
+users.db
