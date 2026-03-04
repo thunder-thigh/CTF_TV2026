@@ -1,8 +1,8 @@
 Database Fields:
 
-auth table:
+auth_table:
 team_name TEXT NOT NULL;
-team_password TEXT NOT NULL;			//This needs to be hashed before entry
+password TEXT NOT NULL;				//This needs to be hashed before entry
 
 teams table:							//Checks with team password before registration
 									//Updatable with known password
@@ -12,7 +12,7 @@ leader_name TEXT NOT NULL;
 leader_email TEXT NOT NULL;
 mem1_enroll TEXT;
 mem1_name TEXT;
-mem1_email TEXT;	
+mem1_email TEXT;
 team_leader_email TEXT;
 mem2_name TEXT;
 team_leader_name TEXT;
@@ -24,4 +24,5 @@ team_leader_email TEXT;
 progress table:
 team_name TEXT NOT NULL;
 problems_column_<1 to x> INTEGER NOT NULL DEFAULT;
-#One row for storing marks per question
+team_progress INTEGER;
+#One row for storing marks per question	

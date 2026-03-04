@@ -4,3 +4,4 @@ build/
 #Binaries
 CTF_Server
 users.db
+users.db-journal

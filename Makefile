@@ -8,13 +8,15 @@ BLD_DIR := build
 
 # -- Sources --
 SERVICE_SRCS := $(SRC_DIR)/register.cpp	\
-				$(SRC_DIR)/CTF_Server.cpp\
-				$(SRC_DIR)/DB_operations.cpp
+				$(SRC_DIR)/CTF_Server.cpp \
+				$(SRC_DIR)/DB_operations.cpp \
+				$(SRC_DIR)/hash.cpp
 				
 # -- Objects --
 SERVICE_OBJS := $(BLD_DIR)/register.o	\
 				$(BLD_DIR)/CTF_Server.o \
 				$(BLD_DIR)/DB_operations.o \
+				$(BLD_DIR)/hash.o
 
 OBJS := $(SERVICE_OBJS)
 BIN := CTF_Server
@@ -25,8 +27,7 @@ BIN := CTF_Server
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^  -l sqlite3
-
+	$(CXX) $(CXXFLAGS) -o $@ $^  -l sqlite3 -lssl -lcrypto
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BLD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
