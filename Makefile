@@ -10,13 +10,15 @@ BLD_DIR := build
 SERVICE_SRCS := $(SRC_DIR)/register.cpp	\
 				$(SRC_DIR)/CTF_Server.cpp \
 				$(SRC_DIR)/DB_operations.cpp \
-				$(SRC_DIR)/hash.cpp
-				
+				$(SRC_DIR)/hash.cpp	\
+				$(SRC_DIR)/rate_limit.cpp
+
 # -- Objects --
 SERVICE_OBJS := $(BLD_DIR)/register.o	\
 				$(BLD_DIR)/CTF_Server.o \
 				$(BLD_DIR)/DB_operations.o \
-				$(BLD_DIR)/hash.o
+				$(BLD_DIR)/hash.o		\
+				$(BLD_DIR)/rate_limit.o
 
 OBJS := $(SERVICE_OBJS)
 BIN := CTF_Server

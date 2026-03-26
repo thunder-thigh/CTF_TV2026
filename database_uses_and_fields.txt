@@ -4,7 +4,7 @@ auth_table:
 team_name TEXT NOT NULL;
 password TEXT NOT NULL;				//This needs to be hashed before entry
 
-teams table:							//Checks with team password before registration
+teams_table:							//Checks with team password before registration
 									//Updatable with known password
 team_name TEXT NOT NULL PRIMARY KEY ;
 leader_enrollment TEXT NOT NULL;

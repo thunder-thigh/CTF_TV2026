@@ -1,5 +1,5 @@
-LoginService			POST user, password to server	->	HASH pass, compare	->	RETURN token for user to store
-RegisterService		POST user, password to server 	->	RETURN error code to user or something
+//SignupService			POST user, password to server	->	HASH pass	->	STORE hash
+//RegisterService			POST team details to server along with password 	->	INSERT INTO teams_table error code to user or something
 DownloadDataService	
 SubmitFlagService
 UserDeletionService
