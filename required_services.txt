@@ -1,6 +1,12 @@
-//SignupService			POST user, password to server	->	HASH pass	->	STORE hash
-//RegisterService			POST team details to server along with password 	->	INSERT INTO teams_table error code to user or something
+LEGEND:
+###	=	Completed And Tested
+##	=	Completed
+#	=	Pending
+nil	=	Not started
+
+###SignupService				POST team_name, password	to server
+###ResetPassService			POST team_name, password, new_password 
 DownloadDataService	
 SubmitFlagService
-UserDeletionService
+###UserDeletionService
 ScoreWatchingServices
