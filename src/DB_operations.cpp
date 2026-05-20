@@ -2,12 +2,26 @@
 #include <sqlite3.h>
 #include <iostream>
 
+#define SQLITE_OPEN_READONLY         0x00000001  /* Ok for sqlite3_open_v2() */
+
 using namespace std;
 
-sqlite3* loadDB(){
+sqlite3* loadDB_write(){
 	sqlite3* db;
 	char dbname[] = "users.db";
 	int rc=sqlite3_open(dbname, &db);
+	if(rc){
+		fprintf(stderr, "Can't Open Database: %s\n", sqlite3_errmsg(db));
+		return NULL;
+	} else {
+		return db;
+	}
+}
+
+sqlite3* loadDB_read(){
+	sqlite3* db;
+	char dbname[] = "users.db";
+	int rc=sqlite3_open_v2(dbname, &db, SQLITE_OPEN_READONLY, nullptr);
 	if(rc){
 		fprintf(stderr, "Can't Open Database: %s\n", sqlite3_errmsg(db));
 		return NULL;

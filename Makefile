@@ -29,7 +29,7 @@ BIN := CTF_Server
 all: $(BIN)
 
 $(BIN): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $^  -l sqlite3 -lssl -lcrypto
+	$(CXX) $(CXXFLAGS) -o $@ $^ -l sqlite3 -lssl -lcrypto
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BLD_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 

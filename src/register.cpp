@@ -6,7 +6,7 @@
 #include <sstream>
 #include <iomanip>
 
-//This file handles registrations
+//This file handles registrations, password rests, team deletion
 std::string hash_password(std::string password);
 int register_team(sqlite3* DB_write_connection, std::string& username, std::string& password_hashed, const char* statement);
 int check_password(sqlite3* DB_read_connection, std::string team_name, std::string password_hashed, const char* statement);
@@ -45,7 +45,7 @@ void setup_register_route(crow::SimpleApp& app, sqlite3* DB_write_connection, st
             return crow::response(200, "Account created successfully\n");
         });
     printf("[Registration Route]: UP\n");
-    printf("Usage: POST <ip>/register -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\"}'\n\n");
+    printf("Usage: POST curl 127.0.0.1:8000/register -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\"}'\n\n");
 }
 
 void setup_password_update_route(crow::SimpleApp& app, sqlite3* DB_write_connection,  sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table){
@@ -84,7 +84,7 @@ void setup_password_update_route(crow::SimpleApp& app, sqlite3* DB_write_connect
             return crow::response(200, "Password updated successfully\n");
         });
     printf("[Pass Reset Route]: UP\n");
-    printf("Usage: POST <ip>/update_pass -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\",\"new_password\":\"top_sicrit\"}'\n\n");
+    printf("Usage: POST curl 127.0.0.1:8000/update_pass -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\",\"new_password\":\"top_sicrit\"}'\n\n");
 }
 
 void setup_team_delete_route(crow::SimpleApp& app, sqlite3* DB_write_connection,  sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table){
@@ -120,7 +120,7 @@ void setup_team_delete_route(crow::SimpleApp& app, sqlite3* DB_write_connection,
             return crow::response(200, "Team deleted successfully\nSorry to see you go ;(\n");
         });
     printf("[Team Delete Route]: UP\n");
-    printf("Usage: POST <ip>/delete_team -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\"}'\n\n");
+    printf("Usage: POST curl 127.0.0.1:8000/delete_team -d '{\"team_name\":\"xyz\",\"password\":\"sicrit\"}'\n\n");
 }
 
 
