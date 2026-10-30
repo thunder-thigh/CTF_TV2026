@@ -40,7 +40,7 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName){
 }
 
 int setup_db(sqlite3* DB_connection){
-	const char* setup_users_table_query="CREATE TABLE IF NOT EXISTS auth_table (team_name TEXT NOT NULL UNIQUE, password TEXT NOT NULL);";
+	const char* setup_users_table_query="PRAGMA journal_mode=WAL; CREATE TABLE IF NOT EXISTS auth_table (team_name TEXT NOT NULL UNIQUE, password TEXT NOT NULL);";
 	char* zErrMsg=0;
 	if(sqlite3_exec(DB_connection, setup_users_table_query, nullptr, 0, &zErrMsg)!=SQLITE_OK){
 		std::cout<<"Error in setting up auth_table: "<<zErrMsg;

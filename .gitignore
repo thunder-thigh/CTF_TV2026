@@ -5,3 +5,5 @@ build/
 CTF_Server
 users.db
 users.db-journal
+users.db-shm
+users.db-wal

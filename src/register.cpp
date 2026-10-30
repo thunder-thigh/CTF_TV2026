@@ -36,9 +36,9 @@ void setup_register_route(crow::SimpleApp& app, sqlite3* DB_write_connection, st
             const char* register_statement="INSERT INTO auth_table (team_name, password) VALUES (?,?);";
             int status=register_team(DB_write_connection, team_name, password_hashed, register_statement);
             if (status==-1){
-                return crow::response(500, "Internet server error: Could not register user\n");
+                return crow::response(401, "Internet server error: Could not register user\n");
             } else if (status==-2){
-                return crow::response(500, "Internet server error: Username already taken\n");
+                return crow::response(401, "Internet server error: Username already taken\n");
             }
             //UNSAFE
             //const char* query=("INSERT INTO users (username, password) VALUES (?, ?);");
@@ -69,7 +69,7 @@ void setup_password_update_route(crow::SimpleApp& app, sqlite3* DB_write_connect
 			if (pass_state==-1){
 				return crow::response(500, "Internal Server Error: Password could not be verified.\n");
 			} else if (pass_state==0){
-				return crow::response(401, "Wrong credentials\n");
+				return crow::response(401, "Wrong credentials OR team does not exist\n");
 			}
 			//Push new pass to DB
             std::string new_pass=body["new_password"].s();
