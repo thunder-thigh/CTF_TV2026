@@ -3,7 +3,7 @@
 start_time=$SECONDS
 echo "Trying updating password for teams 0-999"
 for i in $(seq -w 0 999); do
-	curl -s -X POST http://localhost:8000/update_pass \
+	curl -s -X PATCH http://localhost:8000/register \
 		-H "Content-Type: application/json" \
 		-d "{\"team_name\":\"$i\",\"password\":\"$i\",\"new_password\":\"$i\"}"
 		echo "Tried updating password for user: $i"

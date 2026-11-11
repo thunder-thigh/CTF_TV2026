@@ -10,7 +10,8 @@
 extern void setup_register_route(crow::SimpleApp& app, sqlite3* DB_connection, std::unordered_map<std::string, std::time_t>& ip_table);
 extern void setup_password_update_route(crow::SimpleApp& app, sqlite3* DB_write_connection,  sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table);
 extern void setup_team_delete_route(crow::SimpleApp& app, sqlite3* DB_write_connection,  sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table);
-//extern void setup_details_route(crow::SimpleApp& app, sqlite3* DB_connection);
+extern void setup_team_details_route(crow::SimpleApp& app, sqlite3* DB_write_connection,  sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table);
+extern void setup_team_details_delete_route(crow::SimpleApp& app, sqlite3* DB_write_connection, sqlite3* DB_read_connection, std::unordered_map<std::string, std::time_t>& ip_table);
 extern sqlite3* loadDB_write();
 extern sqlite3* loadDB_read();
 extern int setup_db(sqlite3* DB_connection);
@@ -24,8 +25,9 @@ int main(){
     //Register port.
     printf("\n");
     setup_register_route(app, db_write_connection, ip_table);     // Use <ip>:8000/register
-    setup_password_update_route(app, db_write_connection, db_read_connection, ip_table);		// Use <ip>:8000/pass_reset
-    setup_team_delete_route(app, db_write_connection, db_read_connection, ip_table);		// Use <ip>:8000/pass_reset
-//    setup_details_route(app, db_write_connection, db_read_connection, ip_table);     // Use <ip>:8000/details
+    setup_password_update_route(app, db_write_connection, db_read_connection, ip_table);		// Use <ip>:8000/register
+    setup_team_delete_route(app, db_write_connection, db_read_connection, ip_table);		// Use <ip>:8000/register
+    setup_team_details_route(app, db_write_connection, db_read_connection, ip_table);     // Use <ip>:8000/team/member/<int:0/1/2/3>
+    setup_team_details_delete_route(app, db_write_connection, db_read_connection, ip_table);     // Use <ip>:8000/team/member/<int:0/1/2/3>
     app.port(8000).multithreaded().run();
 }

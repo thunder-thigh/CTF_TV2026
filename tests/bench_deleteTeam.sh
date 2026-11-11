@@ -3,7 +3,7 @@
 start_time=$SECONDS
 echo "Trying deleting teams 0-999"
 for i in $(seq -w 0 999); do
-	curl -s -X POST http://localhost:8000/delete_team \
+	curl -s -X DELETE http://localhost:8000/register \
 		-H "Content-Type: application/json" \
 		-d "{\"team_name\":\"$i\",\"password\":\"$i\"}"
 		echo "Tried deleting team: $i"
